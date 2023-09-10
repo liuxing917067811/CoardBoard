@@ -89,12 +89,23 @@ Page({
     value_strprc: 0.45,//加工成本
     value_inrate: 1.08, //利润
     value_price: 0,//参考平方价
+    // value_cbprice: 0,
     tableData: {
       data: [],  //查询纸板价格  
     }, 
   },
  
-  onLoad() {},
+  onLoad() {
+
+    // this.setData({
+    //   tableData: {
+    //     data: [{
+    //       orgcde:'02',
+    //     }]
+    //   }
+    // });
+
+  },
 
   //厂区选择事件
   bindObjPickerChange(e) {
@@ -248,7 +259,7 @@ async calcPrice(){
     headers: {
       "Content-Type": "application/json"
     },
-    url: 'http://127.0.0.1:5232/api/Papers/Calc',
+    url: 'http://183.247.199.200:8081/api/Papers/Calc',
     method: 'POST',
 
     // 需要手动调用JSON.stringify将数据进行序列化
@@ -286,8 +297,77 @@ async calcPrice(){
 },
 
 //保存配方价格
-save(){
+async save(){
   console.log('保存按钮');
+  console.log(this.data.value_matcde.length.toString() + this.data.crrcdeArray[this.data.crrIndex].name);
+
+  if(this.data.value_cbprice == null || this.data.value_cbprice == 0){
+    
+    dd.alert({content: '金额不对'});
+
+    return;
+  }
+  
+ const res = await dd.confirm({
+    title: '',
+    content: "确定保存吗？\n配方:" + this.data.value_matcde + "\n瓦 楞：" + this.data.crrcdeArray[this.data.crrIndex].name + "\n价 格：" + this.data.value_cbprice.toString() + ' 元/m2' ,
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    success({ confirm }) {
+         
+
+    },
+    fail() {
+      console.log('fail');
+    },
+    complete() {
+      // console.log('complete');
+    },
+
+});
+
+console.log(JSON.stringify(res));
+
+if(res.confirm){
+
+      dd.httpRequest({
+        headers: {
+          "Content-Type": "application/json"
+        },
+        url: 'http://183.247.199.200:8081/api/PaperBoards/save',
+        method: 'POST',
+      
+        // 需要手动调用JSON.stringify将数据进行序列化
+          data: JSON.stringify({
+            orgcde: this.data.objectArray[this.data.arrIndex].code,
+            matcde: this.data.value_matcde,
+            crrcde: this.data.value_matcde.length.toString() + this.data.crrcdeArray[this.data.crrIndex].name,
+            prices: this.data.value_cbprice,
+            status: 'Y'         
+          }),
+        dataType: 'json',
+      
+        success: function(res) {
+          
+          console.log({content: 'sucess'});
+          dd.alert({content: '保存成功'});
+              
+          
+        },
+        fail: function(res) {
+          dd.alert({content: JSON.stringify(res)});
+        },
+        complete: function(res) {
+      
+        }
+      
+      });
+
+}
+
+
+
+
 
 } ,
 //查询配方价格
@@ -303,7 +383,7 @@ async getdata(){
     headers: {
       "Content-Type": "application/json"
     },
-    url: 'http://127.0.0.1:5232/api/PaperBoards/select',
+    url: 'http://183.247.199.200:8081/api/PaperBoards/select',
     method: 'POST',
 
     // 需要手动调用JSON.stringify将数据进行序列化
@@ -330,12 +410,14 @@ async getdata(){
 
   });
 
-  console.log(JSON.stringify(res1.data[0]));
-  
+ 
   this.setData({
-    tabledata: res1.data,
+    tableData: {
+      data: res1.data,  //绑定数据
+    }
   });
 
+  // console.log(JSON.stringify(res1.data));
 
 }
 

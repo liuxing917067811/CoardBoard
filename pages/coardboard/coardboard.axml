@@ -88,7 +88,7 @@
     <!-- 数据 -->
     <view class="page-section">
       <view class="form-line" />
-      <template is="Table" data={{...tabelData}} > </template>
+      <template is="Table" data={{...tableData}} > </template>
     </view>
   </view>
 </view>

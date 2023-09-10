@@ -3,16 +3,20 @@ App({
     // 第一次打开
     // options.query == {number:1}
     console.info('App onLaunch');
-    this.getAuthCode(); //获取用户名
+
     this.updateVersion(); // 检查更新
+    // this.getAuthCode(); //获取用户名
+
 
   },
   onShow(options) {
     // 从后台被 scheme 重新打开
     // options.query == {number:1}
-    this.getAuthCode(); //获取用户名
-    
+
     this.updateVersion(); // 检查更新
+    // this.getAuthCode(); //获取用户名
+    
+    
   },
   globalData: {
     userName: "dd",
