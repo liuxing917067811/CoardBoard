@@ -1,0 +1,55 @@
+<view class="page">
+
+  <view class="page-section">
+  
+     <picker onChange="bindObjPickerChange" value="{{arrIndex}}" range="{{objectArray}}" range-key="name">
+      <view class="row">
+        <view class="row-title">厂区</view>
+        <view class="row-extra">当前选择：{{objectArray[arrIndex].name}}</view>
+        <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+      </view>
+    </picker>
+
+    <view class="form-line" />
+
+    <view class="form-row">
+      <view class="form-row-label">材质</view>
+      <view class="form-row-content">
+        <input class="input" maxlength="7" placeholder="材质" value="{{value_matcde}}" onInput="handle_matcde"/>
+      </view>
+    </view>
+    <view class="form-line" />
+
+    <picker onChange="bindCrrPickerChange" value="{{crrIndex}}" range="{{crrcdeArray}}" range-key="name">
+      <view class="row">
+        <view class="row-title">瓦楞</view>
+        <view class="row-extra">当前选择：{{crrArray[crrIndex].name}}</view>
+        <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+      </view>
+    </picker>
+
+
+
+    <view class="form-row">
+      <view class="form-row-label">数量</view>
+      <view class="form-row-content">
+        <!-- <input class="input" maxlength="10" placeholder="数量" value="{{value_num}}" onInput="handle_num"/> -->
+        <input class="input" type="number" maxlength="15" placeholder="数量" value="{{value_num}}" onInput="handle_num"/>
+      </view>
+    </view>
+    <view class="form-line" />
+
+    <view class="page-section">
+      <view class="page-section-demo">
+        <form onSubmit="onSubmit" onReset="onReset">
+          <button form-type="submit" type="primary">保存</button>
+          <button form-type="reset">取消</button>
+        </form>
+      </view>
+      <view class="form-line" />
+    </view>
+ 
+    <view class="page-section" >
+        {{username}}
+    </view> 
+</view>
