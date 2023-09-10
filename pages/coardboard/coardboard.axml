@@ -23,33 +23,49 @@
     <picker onChange="bindCrrPickerChange" value="{{crrIndex}}" range="{{crrcdeArray}}" range-key="name">
       <view class="row">
         <view class="row-title">瓦楞</view>
-        <view class="row-extra">当前选择：{{crrArray[crrIndex].name}}</view>
+        <view class="row-extra">当前选择：{{crrcdeArray[crrIndex].name}}</view>
         <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
       </view>
     </picker>
 
-
+    <view class="form-row">
+      <view class="form-row-label">损耗</view>
+      <view class="form-row-content">
+        <input class="input" type="number" maxlength="5" placeholder="数量" value="{{value_lssrat}}" onInput="handle_lssrat"/>
+      </view>
+    </view>
+    <view class="form-line" />
 
     <view class="form-row">
-      <view class="form-row-label">数量</view>
+      <view class="form-row-label">加工成本</view>
       <view class="form-row-content">
-        <!-- <input class="input" maxlength="10" placeholder="数量" value="{{value_num}}" onInput="handle_num"/> -->
-        <input class="input" type="number" maxlength="15" placeholder="数量" value="{{value_num}}" onInput="handle_num"/>
+        <input class="input" type="number" maxlength="5" placeholder="成本" value="{{value_strprc}}" onInput="handle_strprc"/>
+      </view>
+    </view>
+    <view class="form-line" />
+
+    <view class="form-row">
+      <view class="form-row-label">利润</view>
+      <view class="form-row-content">
+        <input class="input" type="number" maxlength="5" placeholder="利润" value="{{value_inrate}}" onInput="handle_inrate"/>
+      </view>
+    </view>
+    <view class="form-line" />
+
+    <view class="form-row">
+      <view class="form-row-label">参考平方价</view>
+      <view class="form-row-content">
+        <input class="input" type="number" maxlength="15" placeholder="参考平方价" value="{{value_price}}" onInput="handle_price"/>
       </view>
     </view>
     <view class="form-line" />
 
     <view class="page-section">
       <view class="page-section-demo">
-        <form onSubmit="onSubmit" onReset="onReset">
-          <button form-type="submit" type="primary">保存</button>
-          <button form-type="reset">取消</button>
-        </form>
+          <button  type="primary" onTap="calc">计算参考平方价</button>
       </view>
       <view class="form-line" />
     </view>
  
-    <view class="page-section" >
-        {{username}}
-    </view> 
+
 </view>
