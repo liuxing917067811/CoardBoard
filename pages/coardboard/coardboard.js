@@ -89,7 +89,11 @@ Page({
     value_strprc: 0.45,//加工成本
     value_inrate: 1.08, //利润
     value_price: 0,//参考平方价
+    tableData: {
+      data: [],  //查询纸板价格  
+    }, 
   },
+ 
   onLoad() {},
 
   //厂区选择事件
@@ -115,7 +119,7 @@ Page({
     let tmp = e.detail.value.trim().toUpperCase();
     console.log('材质输入：',tmp);
     this.setData({
-      value_matcde: e.detail.value.toUpperCase(),
+      value_matcde: tmp,
     });
     
     if(tmp.length < 3){
@@ -237,7 +241,7 @@ calc(){
   
 },
 //异步计算平方价
-async calcPrice(json){
+async calcPrice(){
 
     //调用配方计算接口
   const res1 = await dd.httpRequest({
@@ -280,7 +284,60 @@ async calcPrice(json){
   });
 
 },
-//
+
+//保存配方价格
+save(){
+  console.log('保存按钮');
+
+} ,
+//查询配方价格
+select(){
+  console.log('查询按钮');
+  this.getdata();
+},
+//异步查询数据
+async getdata(){
+
+  //调用配方查询接口
+  const res1 = await dd.httpRequest({
+    headers: {
+      "Content-Type": "application/json"
+    },
+    url: 'http://127.0.0.1:5232/api/PaperBoards/select',
+    method: 'POST',
+
+    // 需要手动调用JSON.stringify将数据进行序列化
+      data: JSON.stringify({
+        matcde: this.data.value_matcde,
+        crrcde: this.data.crrcdeArray[this.data.crrIndex].name
+
+      }),
+    dataType: 'json',
+
+    success: function(res) {
+      
+      console.log({content: 'sucess'});
+              
+          
+      
+    },
+    fail: function(res) {
+      dd.alert({content: JSON.stringify(res)});
+    },
+    complete: function(res) {
+   
+    }
+
+  });
+
+  console.log(JSON.stringify(res1.data[0]));
+  
+  this.setData({
+    tabledata: res1.data,
+  });
+
+
+}
 
 
 

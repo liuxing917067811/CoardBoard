@@ -1,0 +1,73 @@
+<template name="Table">
+  <scroll-view scroll-y >
+    <view>
+      <view a:if={{data}} class="a-list-items">
+        
+        <view class="theader flex" style="position: {{position}}">
+          <view  class="th font-weight-bold" style="width: 25%"> 
+            <view class="th-item" >
+                厂区
+            </view>
+          </view>
+          <view  class="th font-weight-bold" style="width: 25%"> 
+            <view class="th-item" >
+                材质
+            </view>
+          </view>
+          <view  class="th font-weight-bold" style="width: 25%"> 
+            <view class="th-item" >
+                瓦楞
+            </view>
+          </view>
+          <view  class="th font-weight-bold" style="width: 25%"> 
+            <view class="th-item" >
+                厂区
+            </view>
+          </view>
+          <view  class="th font-weight-bold" style="width: 25%"> 
+            <view class="th-item" >
+                价格
+            </view>
+          </view>
+        </view>
+
+          <block a:for={{data}}>
+            <view class="form-line" />
+              <view class="table">
+                <view class="tbody flex">
+                    <view  class="tr flex" >
+
+                      <view  class="td" style="width: 25%"> 
+                        <view class="td-item" >
+                          {{item.orgcde}}
+                        </view>
+                      </view>
+
+                      <view  class="td" style="width: 25%"> 
+                        <view class="td-item" >
+                          {{item.matcde}}
+                        </view>
+                      </view>
+
+                      <view  class="td" style="width: 25%"> 
+                        <view class="td-item" >
+                          {{item.crrcde}}
+                        </view>
+                      </view>
+
+                      <view  class="td" style="width: 25%"> 
+                        <view class="td-item" >
+                          {{item.prices}}
+                        </view>
+                      </view>
+
+                    </view>
+                </view>      
+              </view>
+                             
+          </block>
+      </view>
+
+    </view>
+  </scroll-view>
+</template>

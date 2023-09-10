@@ -1,5 +1,6 @@
+<import src="../components/table/table.axml" />
 <view class="page">
-
+    
   <view class="page-section">
   
      <picker onChange="bindObjPickerChange" value="{{arrIndex}}" range="{{objectArray}}" range-key="name">
@@ -76,7 +77,7 @@
       </view>
       <view class="form-line" />
       <view class="page-section-demo">
-        <button  type="primary" onTap="save">保存</button>
+        <button  type="primary" onTap="save">保存配方价格</button>
       </view>
       <view class="form-line" />
       <view class="page-section-demo">
@@ -84,7 +85,10 @@
       </view>
     </view>
 
-
-
-
+    <!-- 数据 -->
+    <view class="page-section">
+      <view class="form-line" />
+      <template is="Table" data={{...tabelData}} > </template>
+    </view>
+  </view>
 </view>
