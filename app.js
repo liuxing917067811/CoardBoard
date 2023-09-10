@@ -19,7 +19,7 @@ App({
     
   },
   globalData: {
-    userName: "151576",
+    userName: "0",
     
   },
 

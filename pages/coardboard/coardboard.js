@@ -48,38 +48,6 @@ Page({
         id: 3,
         name: 'BA',
       },
-      {
-        id: 4,
-        name: 'B',
-      },
-      {
-        id: 5,
-        name: 'E',
-      },
-      {
-        id: 6,
-        name: 'C',
-      },
-      {
-        id: 7,
-        name: 'A',
-      },
-      {
-        id: 8,
-        name: 'BCB',
-      },
-      {
-        id: 9,
-        name: 'BBC',
-      },
-      {
-        id: 10,
-        name: 'EBC',
-      },
-      {
-        id: 11,
-        name: 'EBA',
-      },
     ],
 
     arrIndex: 1, //厂区
@@ -133,7 +101,7 @@ Page({
       value_matcde: tmp,
     });
     
-    if(tmp.length < 3){
+    if(tmp.length < 4){
       this.setData({
         crrcdeArray: [
           {
@@ -300,6 +268,11 @@ async calcPrice(){
 async save(){
   console.log('保存按钮');
   console.log(this.data.value_matcde.length.toString() + this.data.crrcdeArray[this.data.crrIndex].name);
+  var str = this.data.value_matcde.toString();
+  if(str.length<2){
+    dd.alert({content: '材质长度不对'});
+    return;
+  }
 
   if(this.data.value_cbprice == null || this.data.value_cbprice == 0){
     
