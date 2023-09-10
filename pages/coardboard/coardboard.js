@@ -112,8 +112,8 @@ Page({
   //材质输入
   handle_matcde(e){
 
-    let tmp = e.detail.value.toUpperCase();
-    console.log('材质输入：',e.detail.value.toUpperCase());
+    let tmp = e.detail.value.trim().toUpperCase();
+    console.log('材质输入：',tmp);
     this.setData({
       value_matcde: e.detail.value.toUpperCase(),
     });
@@ -218,6 +218,13 @@ handle_inrate(e){
 handle_price(e){
 
 },
+//实际配方价格
+handle_cbprice(e){
+  this.setData({
+    value_cbprice: e.detail.value,
+  })
+},
+
 //计算平方价
 calc(){
   const reg = this.data.value_matcde.search('^[0-9a-zA-Z]+');

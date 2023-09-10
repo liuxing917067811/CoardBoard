@@ -25,7 +25,7 @@ page {
 }
 
 .page-section-demo {
-  padding: 32rpx;
+  padding: 5;
 }
 
 .page-section-btns {
