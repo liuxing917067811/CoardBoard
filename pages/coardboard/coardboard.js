@@ -343,7 +343,8 @@ if(res.confirm){
             matcde: this.data.value_matcde,
             crrcde: this.data.value_matcde.length.toString() + this.data.crrcdeArray[this.data.crrIndex].name,
             prices: this.data.value_cbprice,
-            status: 'Y'         
+            status: 'Y' ,
+            updatedby: app.globalData.userName       
           }),
         dataType: 'json',
       

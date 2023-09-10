@@ -5,7 +5,7 @@ App({
     console.info('App onLaunch');
 
     this.updateVersion(); // 检查更新
-    // this.getAuthCode(); //获取用户名
+    //  this.getAuthCode(); //获取用户名
 
 
   },
@@ -14,7 +14,7 @@ App({
     // options.query == {number:1}
 
     this.updateVersion(); // 检查更新
-    // this.getAuthCode(); //获取用户名
+    //  this.getAuthCode(); //获取用户名
     
     
   },
@@ -36,7 +36,7 @@ async getAuthCode (){
     headers: {
       "Content-Type": "application/json"
     },
-    url: 'https://wlsl3q.forestpacking.com:4443/api/UserName',
+    url: 'http://183.247.199.200:8081/api/UserName',
     method: 'POST',
 
     // 需要手动调用JSON.stringify将数据进行序列化
