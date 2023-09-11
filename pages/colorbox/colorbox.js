@@ -29,6 +29,10 @@ Page({
     value_innrat: 0,
     value_gulprc: 0.2,//裱胶加工费
     value_strprc: 350,//合并起做费
+
+    tableData: {
+      data: [],  //查询纸板价格  
+    }, 
   },
   onLoad() {},
 
@@ -178,11 +182,11 @@ Page({
     async save(){
       console.log('保存按钮');
       
-      // var str = this.data.value_matcde.toString();
-      // if(str.length<2){
-      //   dd.alert({content: '材质长度不对'});
-      //   return;
-      // }
+      var str = this.data.value_tiscde.toString();
+      if(str.length<1){
+        dd.alert({content: '面纸空'});
+        return;
+      }
           
      const res = await dd.confirm({
         title: '',
@@ -209,15 +213,20 @@ Page({
             headers: {
               "Content-Type": "application/json"
             },
-            url: 'http://183.247.199.200:8081/api/PaperBoards/save1',
+            url: 'http://183.247.199.200:8081/api/ColorBoxs/Save',
             method: 'POST',
           
             // 需要手动调用JSON.stringify将数据进行序列化
               data: JSON.stringify({
-                orgcde: this.data.objectArray[this.data.arrIndex].code,
-                matcde: this.data.value_matcde,
-                crrcde: this.data.value_matcde.length.toString() + this.data.crrcdeArray[this.data.crrIndex].name,
-                prices: this.data.value_cbprice,
+                tiscde: this.data.value_tiscde,
+                piecde: this.data.value_piecde,
+                crrcde: this.data.crrcdeArray[this.data.crrIndex].name,
+                inncde: this.data.value_inncde,
+                tisrat: this.data.value_tisrat,
+                pierat: this.data.value_pierat,
+                innrat: this.data.value_innrat,
+                strprc: this.data.value_strprc,
+                gulprc: this.data.value_gulprc,
                 status: 'Y' ,
                 updatedby: app.globalData.mobile       
               }),
@@ -227,8 +236,8 @@ Page({
               
               console.log({content: 'sucess'});
               dd.alert({content: '保存成功'});
-                  
-              
+                 
+             
             },
             fail: function(res) {
               dd.alert({content: JSON.stringify(res)});
@@ -243,7 +252,103 @@ Page({
     
     
   } ,
+// 配方失效
+  setoff(){
+      console.log("配方失效");
+      dd.httpRequest({
+        headers: {
+          "Content-Type": "application/json"
+        },
+        url: 'http://183.247.199.200:8081/api/ColorBoxs/save',
+        method: 'POST',
+      
+        // 需要手动调用JSON.stringify将数据进行序列化
+          data: JSON.stringify({
+            tiscde: this.data.value_tiscde,
+            piecde: this.data.value_piecde,
+            crrcde: this.data.crrcdeArray[this.data.crrIndex].name,
+            inncde: this.data.value_inncde,
+            // tisrat: this.data.value_tisrat,
+            // pierat: this.data.value_pierat,
+            // innrat: this.data.value_innrat,
+            // strprc: this.data.value_strprc,
+            // gulprc: this.data.value_gulprc,
+            status: 'N' ,
+            updatedby: app.globalData.mobile       
+          }),
+        dataType: 'json',
+      
+        success: function(res) {
+          
+          console.log({content: 'sucess'});
+          dd.alert({content: '保存成功'});
+             
+         
+        },
+        fail: function(res) {
+          dd.alert({content: JSON.stringify(res)});
+        },
+        complete: function(res) {
+      
+        }
+      
+      });
 
+      
+  },
+//查询
+select(){
+  console.log("查询按钮");
+  this.getdata();
 
+},
+//异步查询数据
+async getdata(){
+
+  //调用配方查询接口
+  const res1 = await dd.httpRequest({
+    headers: {
+      "Content-Type": "application/json"
+    },
+    url: 'http://183.247.199.200:8081/api/ColorBoxs/Select',
+    method: 'POST',
+
+    // 需要手动调用JSON.stringify将数据进行序列化
+      data: JSON.stringify({
+        tiscde: this.data.value_tiscde,
+        piecde: this.data.value_piecde,
+        crrcde: this.data.crrcdeArray[this.data.crrIndex].name,
+        inncde: this.data.value_inncde
+
+      }),
+    dataType: 'json',
+
+    success: function(res) {
+      
+      // console.log({content: 'sucess'});
+              
+          
+      
+    },
+    fail: function(res) {
+      dd.alert({content: JSON.stringify(res)});
+    },
+    complete: function(res) {
+   
+    }
+
+  });
+
+ 
+  this.setData({
+    tableData: {
+      data: res1.data,  //绑定数据
+    }
+  });
+
+  // console.log(JSON.stringify(res1.data));
+
+},
+//
 
 });

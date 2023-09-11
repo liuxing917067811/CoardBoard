@@ -1,4 +1,4 @@
-<import src="../components/table/table.axml" />
+<import src="../components/colorboxtable/colorboxtable.axml" />
 
 <view class="page">
     

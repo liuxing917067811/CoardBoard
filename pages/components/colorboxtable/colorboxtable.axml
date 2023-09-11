@@ -1,0 +1,84 @@
+<template name="Table">
+  <scroll-view scroll-y >
+
+    <view>
+   
+      <view a:if={{data}}  class="a-list-items">
+
+        <view class="theader flex" style="position">
+
+          <view  class="th font-weight-bold" style="width: 20%"> 
+            <view class="th-item" >
+                材质
+            </view>
+          </view>
+          <view  class="th font-weight-bold" style="width: 20%"> 
+            <view class="th-item" >
+                瓦楞
+            </view>
+          </view>
+           <view  class="th font-weight-bold" style="width: 20%"> 
+            <view class="th-item" >
+                裱胶
+            </view>
+          </view>
+          <view  class="th font-weight-bold" style="width: 20%"> 
+            <view class="th-item" >
+                起做费
+            </view>
+          </view>
+          <view  class="th font-weight-bold" style="width: 20%"> 
+            <view class="th-item" >
+                状态
+            </view>
+          </view>
+        </view>
+      
+          <block a:for={{data}}>
+            
+            <view class="form-line" />
+
+              <view class="table">
+                <view class="tbody flex">
+                    <view  class="tr flex" >
+
+                      <view  class="td" style="width: 20%"> 
+                        <view class="td-item" >
+                          {{item.matcde}}
+                        </view>
+                      </view>
+
+                      <view  class="td" style="width: 20%"> 
+                        <view class="td-item" >
+                          {{item.crrcde}}
+                        </view>
+                      </view>
+
+                      <view  class="td" style="width: 20%"> 
+                        <view class="td-item" >
+                          {{item.gulprc}}
+                        </view>
+                      </view>
+
+                      <view  class="td" style="width: 20%"> 
+                        <view class="td-item" >
+                          {{item.strprc}}
+                        </view>
+                      </view>
+
+                      <view  class="td" style="width: 20%"> 
+                        <view class="td-item" >
+                          {{item.status}}
+                        </view>
+                      </view>
+
+                    </view>
+                </view>      
+              </view>
+                             
+          </block>
+      </view>
+
+    </view>
+  </scroll-view>
+</template>
