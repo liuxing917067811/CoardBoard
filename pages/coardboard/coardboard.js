@@ -376,7 +376,7 @@ async getdata(){
 
     success: function(res) {
       
-      console.log({content: 'sucess'});
+      // console.log({content: 'sucess'});
               
           
       
@@ -398,6 +398,52 @@ async getdata(){
   });
 
   // console.log(JSON.stringify(res1.data));
+
+},
+//配方失效
+setoff(){
+  console.log("配方失效按钮");
+  var str = this.data.value_matcde.toString();
+  if(str.length<2){
+    dd.alert({content: '材质长度不对'});
+    return;
+  }
+
+  dd.httpRequest({
+    headers: {
+      "Content-Type": "application/json"
+    },
+    url: 'http://183.247.199.200:8081/api/PaperBoards/SetOff',
+    method: 'POST',
+  
+    // 需要手动调用JSON.stringify将数据进行序列化
+      data: JSON.stringify({
+        orgcde: this.data.objectArray[this.data.arrIndex].code,
+        matcde: this.data.value_matcde,
+        crrcde: this.data.value_matcde.length.toString() + this.data.crrcdeArray[this.data.crrIndex].name,
+        // prices: this.data.value_cbprice,
+        status: 'N' ,
+        updatedby: app.globalData.mobile       
+      }),
+    dataType: 'json',
+  
+    success: function(res) {
+      
+      console.log({content: 'sucess'});
+      dd.alert({content: '配方失效成功'});
+          
+      
+    },
+    fail: function(res) {
+      dd.alert({content: JSON.stringify(res)});
+    },
+    complete: function(res) {
+  
+    }
+  
+  });
+
+
 
 }
 

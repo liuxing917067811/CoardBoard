@@ -81,6 +81,10 @@
       </view>
       <view class="form-line" />
       <view class="page-section-demo">
+        <button  type="primary" onTap="setoff">配方失效</button>
+      </view>
+      <view class="form-line" />
+      <view class="page-section-demo">
         <button  type="primary" onTap="select">查询当前配方价格</button>
       </view>
     </view>

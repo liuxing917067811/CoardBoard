@@ -118,7 +118,7 @@
 }
 
 .th, .td {
-  min-width: 25%;
+  min-width: 10%;
   flex-wrap: nowrap;
   text-align: center;
   box-sizing: border-box;
