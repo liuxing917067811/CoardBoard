@@ -31,7 +31,12 @@ Page({
         entitle: 'Interface',
         page: '../coardboard/coardboard'
       },
-      
+      {
+        icon: '/image/biz_dropdown.png',
+        title: '彩印配方',
+        entitle: 'Interface',
+        page: '../colorbox/colorbox'
+      },
 
       ],
     }
