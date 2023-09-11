@@ -5,7 +5,7 @@ App({
     console.info('App onLaunch');
 
     this.updateVersion(); // 检查更新
-    //  this.getAuthCode(); //获取用户名
+     this.getAuthCode(); //获取用户名
 
 
   },
@@ -14,13 +14,13 @@ App({
     // options.query == {number:1}
 
     this.updateVersion(); // 检查更新
-    //  this.getAuthCode(); //获取用户名
+     this.getAuthCode(); //获取用户名
     
     
   },
   globalData: {
     userName: "0",
-    
+    mobile: "0",
   },
 
 
@@ -65,8 +65,9 @@ async getAuthCode (){
   
   // console.log(res1.data.name);
   this.globalData.userName = res1.data.name;
-
+  this.globalData.mobile = res1.data.mobile;
   console.log( this.globalData.userName);
+  console.log( this.globalData.mobile);
 
  },
 

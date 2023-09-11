@@ -122,6 +122,8 @@ Page({
           }
         ],
         crrIndex: 0,
+        value_lssrat: 1.05,
+        value_strprc: 0.25,
       });
     }else if(tmp.length > 5) {
       this.setData({
@@ -148,6 +150,8 @@ Page({
           }
         ],
         crrIndex: 0,
+        value_lssrat: 1.07,
+        value_strprc: 0.65
       });
     }else {
       this.setData({
@@ -171,6 +175,8 @@ Page({
   
         ],
         crrIndex: 0,
+        value_lssrat: 1.05,
+        value_strprc: 0.45,
       });
 
     }
@@ -317,7 +323,7 @@ if(res.confirm){
             crrcde: this.data.value_matcde.length.toString() + this.data.crrcdeArray[this.data.crrIndex].name,
             prices: this.data.value_cbprice,
             status: 'Y' ,
-            updatedby: app.globalData.userName       
+            updatedby: app.globalData.mobile       
           }),
         dataType: 'json',
       
