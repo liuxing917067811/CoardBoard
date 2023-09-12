@@ -118,6 +118,7 @@ Page({
         ],
           crrIndex: 0,
           value_strprc: 0,
+          value_piecde: '',
         }
       );
     }else
