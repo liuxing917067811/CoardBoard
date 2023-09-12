@@ -56,7 +56,7 @@ Page({
       value_piecde: tmp,
     });
     
-    if(tmp.length < 4){
+    if(tmp.length < 4 && tmp.length>0){
       this.setData({
         crrcdeArray: [
           {
@@ -108,7 +108,20 @@ Page({
         value_strprc: 480,
    
       });
-    }else {
+    }else if(tmp.length == 0){
+      this.setData(
+        {
+          crrcdeArray: [{
+            id: 0,
+            name: '',
+          }
+        ],
+          crrIndex: 0,
+          value_strprc: 0,
+        }
+      );
+    }else
+    {
       this.setData({
         crrcdeArray: [
           {
