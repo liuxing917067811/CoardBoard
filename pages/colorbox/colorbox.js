@@ -38,7 +38,14 @@ Page({
   },
   onLoad() {},
 
-
+  bindCrrPickerChange(e) {
+  
+    console.log('picker发送选择改变，携带值为', e.detail.value);
+    this.setData({
+      crrIndex: e.detail.value.toString().toUpperCase(), 
+    });
+  
+  },
 
   //面纸
   handle_tiscde(e){
@@ -77,6 +84,7 @@ Page({
           }
         ],
         crrIndex: 0,
+        value_gulprc: 0.2,
         value_strprc: 245,
 
       });
@@ -118,6 +126,7 @@ Page({
         ],
           crrIndex: 0,
           value_strprc: 0,
+          value_gulprc: 0,
           value_piecde: '',
         }
       );
@@ -144,6 +153,7 @@ Page({
   
         ],
         crrIndex: 0,
+        value_gulprc: 0.2,
         value_strprc: 350,
      
       });
