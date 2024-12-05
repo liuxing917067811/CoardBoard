@@ -37,6 +37,12 @@ Page({
         entitle: 'Interface',
         page: '../colorbox/colorbox'
       },
+      {
+        icon: '/image/biz_list.png',
+        title: '三期特殊配方',
+        entitle: 'Interface',
+        page: '../specialoffer/specialoffer'
+      },
 
       ],
     }

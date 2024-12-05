@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/coardboard/coardboard",
-    "pages/colorbox/colorbox"
+    "pages/colorbox/colorbox",
+    "pages/specialoffer/specialoffer"
   ],
   "window": {
     "defaultTitle": "纸板报价"
