@@ -85,6 +85,10 @@
       </view>
       <view class="form-line" />
       <view class="page-section-demo">
+        <button  type="primary" onTap="savetoerp">保存到厂区ERP</button>
+      </view>
+      <view class="form-line" />
+      <view class="page-section-demo">
         <button  type="primary" onTap="select">查询当前配方价格</button>
       </view>
     </view>

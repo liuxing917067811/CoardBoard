@@ -445,7 +445,84 @@ setoff(){
 
 
 
-}
+},
+
+//保存到厂区erp
+async savetoerp(){
+  console.log('保存按钮');
+  console.log(this.data.value_matcde.length.toString() + this.data.crrcdeArray[this.data.crrIndex].name);
+  var str = this.data.value_matcde.toString();
+  if(str.length<2){
+    dd.alert({content: '材质长度不对'});
+    return;
+  }
+
+  if(this.data.value_cbprice == null || this.data.value_cbprice == 0){
+    
+    dd.alert({content: '金额不对'});
+
+    return;
+  }
+  
+ const res = await dd.confirm({
+    title: '',
+    content: "确定保存吗？\n配方:" + this.data.value_matcde + "\n瓦 楞：" + this.data.crrcdeArray[this.data.crrIndex].name + "\n价 格：" + this.data.value_cbprice.toString() + ' 元/m2' ,
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    success({ confirm }) {
+         
+
+    },
+    fail() {
+      console.log('fail');
+    },
+    complete() {
+      // console.log('complete');
+    },
+
+});
+
+console.log(JSON.stringify(res));
+
+if(res.confirm){
+
+      dd.httpRequest({
+        headers: {
+          "Content-Type": "application/json"
+        },
+        url: 'http://183.247.199.200:8081/api/fcal/save',
+        method: 'POST',
+      
+        // 需要手动调用JSON.stringify将数据进行序列化
+          data: JSON.stringify({
+            orgcde: this.data.objectArray[this.data.arrIndex].code,
+            matcde: this.data.value_matcde,
+            crrcde: this.data.value_matcde.length.toString() + this.data.crrcdeArray[this.data.crrIndex].name,
+            prices: this.data.value_cbprice,
+            status: 'Y' ,
+            updatedby: app.globalData.mobile       
+          }),
+        dataType: 'json',
+      
+        success: function(res) {
+          
+          console.log({content: 'sucess'});
+          dd.alert({content: '保存成功'});
+              
+          
+        },
+        fail: function(res) {
+          dd.alert({content: JSON.stringify(res)});
+        },
+        complete: function(res) {
+      
+        }
+      
+      });
+
+  }
+
+} ,
 
 
 
